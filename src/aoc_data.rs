@@ -35,3 +35,19 @@ pub fn read_tuples_from_file(path: &str) -> io::Result<Vec<(i32, i32)>> {
     Ok(tuples)
 }
 
+pub fn read_variable_tuples_from_file(path: &str) -> io::Result<Vec<Vec<i32>>> {
+    let file = File::open(&path)?;
+    let reader = io::BufReader::new(file);
+    let mut tuples: Vec<Vec<i32>> = Vec::new();
+
+    for line in reader.lines() {
+        let line = line?;
+        let numbers: Vec<i32> = line
+            .split_whitespace() // Split by whitespace
+            .map(|num| num.parse::<i32>().expect("Invalid number")) // Parse to i32
+            .collect();
+        tuples.push(numbers);
+    }
+
+    Ok(tuples)
+}
