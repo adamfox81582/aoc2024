@@ -1,6 +1,10 @@
 use std::fs::File;
 use std::io::{self, prelude::*};
 
+pub fn datafile_path(day: u8, is_sample_data: bool) -> String {
+    format!("data/day{}.data.{}.txt", day, if is_sample_data {"sample"} else {"real"})
+}
+
 pub fn read_tuples_from_file(path: &str) -> io::Result<Vec<(i32, i32)>> {
     // Open the file
     let file = File::open(&path)?;

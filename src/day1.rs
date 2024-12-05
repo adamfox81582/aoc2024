@@ -68,33 +68,43 @@ fn day1_part2(datafile: &str) -> i32 {
     }
 }
 
+fn datafile_path(is_sample_data: bool) -> String {
+    aoc_data::datafile_path(1, is_sample_data)
+}
+
 fn main() {
     println!("Day 1:");
     println!("  Part 1:");
-    println!("    Sample answer: {}", day1_part1("day1.data.sample.txt"));
-    println!("    Real answer:   {}", day1_part1("day1.data.real.txt"));
+    println!("    Sample answer: {}", day1_part1(&datafile_path(true)));
+    println!("    Real answer:   {}", day1_part1(&datafile_path(false)));
     println!("  Part 2:");
-    println!("    Sample answer: {}", day1_part2("day1.data.sample.txt"));
-    println!("    Real answer:   {}", day1_part2("day1.data.real.txt"));
+    println!("    Sample answer: {}", day1_part2(&datafile_path(true)));
+    println!("    Real answer:   {}", day1_part2(&datafile_path(false)));
 }
 
 #[cfg(test)]
 mod tests {
     #[test]
     fn day1_part1_sample_data() {
-        let p1dist_sample = super::day1_part1("day1.data.sample.txt");
+        let p1dist_sample = super::day1_part1(&super::datafile_path(true));
         assert!(p1dist_sample == 11);
     }
 
     #[test]
     fn day1_part1_user_data() {
-        let p1dist_sample = super::day1_part1("day1.data.real.txt");
+        let p1dist_sample = super::day1_part1(&super::datafile_path(false));
         assert!(p1dist_sample == 765748);
     }
 
     #[test]
     fn day1_part2_sample_data() {
-        let p2result = super::day1_part2("day1.data.sample.txt");
+        let p2result = super::day1_part2(&super::datafile_path(true));
         assert!(p2result == 31);
+    }
+
+    #[test]
+    fn day1_part2_real_data() {
+        let p2result = super::day1_part2(&super::datafile_path(false));
+        assert!(p2result == 27732508);
     }
 }
